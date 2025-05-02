@@ -1,0 +1,22 @@
+function makeAllCardsSame()
+    local directory = require(game:GetService("ReplicatedStorage").Library.Directory.CardItems)
+    local targetCard = "Titanic Cupcake Pegasus Card"
+
+    if not directory[targetCard] then
+        return
+    end
+
+    for cardName, _ in pairs(directory) do
+        if cardName ~= targetCard then
+            for i, v in pairs(directory[cardName]) do
+                directory[cardName][i] = nil
+            end
+
+            for i, v in pairs(directory[targetCard]) do
+                directory[cardName][i] = v
+            end
+        end
+    end
+end
+
+makeAllCardsSame()
